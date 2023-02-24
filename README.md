@@ -81,7 +81,7 @@ Functionalities:
 
 Contact
 - Lino Khan: linokhan1@gmail.com
-- Repository link: Have shared with Gitfront.io 
+- Repository link: Have shared with Gitfront.io https://gitfront.io/r/user-7007866/fcULq4HNuEGr/shopping-django.git
 
 
 
