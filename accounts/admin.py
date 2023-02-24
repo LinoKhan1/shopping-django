@@ -1,10 +1,12 @@
+# Imports
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Account
+from django.utils.html import format_html
+from .models import Account, UserProfile
 
-# Register your models here.
+# Registering account's app models.
 
-
+# AccountAdmin class to define which fields to display in the account model
 class AccountAdmin(UserAdmin):
     list_display = ('email', 'first_name', 'last_name', 'username', 'date_joined', 'last_login', 'is_active')
     list_display_links = ('email', 'first_name', 'last_name')
@@ -15,4 +17,14 @@ class AccountAdmin(UserAdmin):
     fieldsets = ()
 
 
+class UserProfileAdmin(admin.ModelAdmin):
+
+    # thumbnail function to display the profile picture in the db
+    def thumbnail(self, obj):
+        return format_html('<img src="{}" width="30" style="border-radius=50%;">'.format(obj.profile_picture.url))
+    thumbnail.short_description = 'Profile Picture'
+    list_display = ('thumbnail', 'user', 'city', 'state', 'country')
+
+
 admin.site.register(Account, AccountAdmin)
+admin.site.register(UserProfile, UserProfileAdmin)

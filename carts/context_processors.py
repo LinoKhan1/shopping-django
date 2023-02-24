@@ -1,8 +1,10 @@
+# Imports
 from .models import Carts, CartItem
 from carts.views import _cart_id
 from django.urls import path
 
 
+# function, used to count the cart item
 def counter(request):
     cart_count = 0
     if 'admin' in request.path:

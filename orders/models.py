@@ -17,12 +17,15 @@ class Payment(models.Model):
 
 
 class Order(models.Model):
+
+    # Tuple status, passing different options on the order status from new to cancelled
     STATUS = (
         ('New', 'New'),
         ('Accepted', 'Accepted'),
         ('Completed', 'Completed'),
         ('Cancelled', 'Cancelled'),
     )
+    # Attributes/fields
     user = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
     payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
     order_number = models.CharField(max_length=20)
@@ -44,17 +47,22 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    # combining the names
     def full_name(self):
         return f'{self.first_name} {self.last_name}'
 
+    # combining the addresses
     def full_address(self):
         return f'{self.address_line_1} {self.address_line_2}'
 
+    # String Representation of the model
     def __str__(self):
         return self.first_name
 
 
+# Order Product Model
 class OrderProduct(models.Model):
+    # attributes/fields
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
@@ -66,6 +74,7 @@ class OrderProduct(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    # String Representation of the model
     def __str__(self):
         return self.product.product_name
 
