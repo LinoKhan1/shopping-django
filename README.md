@@ -81,7 +81,7 @@ Functionalities:
 
 Contact
 - Lino Khan: linokhan1@gmail.com
-- Repository link: 
+- Repository link: Have shared with Gitfront.io 
 
 
 
